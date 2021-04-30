@@ -1,7 +1,10 @@
 let inputSelectAuth = '.select-styled';
-let inputLogin = '#userid';
-let inputPassword = '#userpassword';
+let inputContractLogin = 'input[id="userid"]';
+let inputContractPassword = 'input[name="userpassword"]';
 let buttonSubmit = 'button[class="btn shadow login-btn"]';
+
+let inputEmailLogin = 'input[name="useremail"]';
+let inputEmailPassword = 'input[name="emailpassword"]';
 
 export class AuthLoginform {
 
@@ -13,8 +16,8 @@ export class AuthLoginform {
 
     //Авторизация при помощи номера договора
     userAuthContract(login, password) {
-        cy.get(inputLogin).clear().type(login)
-        cy.get(inputPassword).clear().type(password)
+        cy.get(inputContractLogin).clear().type(login)
+        cy.get(inputContractPassword).clear().type(password)
         cy.get(buttonSubmit).click()
     }
 
@@ -28,8 +31,8 @@ export class AuthLoginform {
 
     //Авторизация при помощи Email
     userAuthEmail(login, password) {
-        cy.get(inputLogin).clear().type(login)
-        cy.get(inputPassword).clear().type(password)
+        cy.get(inputEmailLogin).clear().type(login)
+        cy.get(inputEmailPassword).clear().type(password)
         cy.get(buttonSubmit).click()
     }
 }

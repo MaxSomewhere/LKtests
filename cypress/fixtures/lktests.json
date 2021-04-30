@@ -2,6 +2,11 @@
     "baseUrl" : "https://stat.briz.ua/login",
     "correctAkkNum" : "145888",
     "correctAkkPass" : "123456",
+    "incorrectAkkPass" : "103488",
     "invalidAkkNum" : "qwerty",
-    "incorrectAkkNum": "123"
+    "incorrectAkkNum": "123",
+
+    "correctEmail" : "gusionmobla@gmail.com",
+    "incorrectEmail" : "gusionmobla235@gmail.com",
+    "invalidEmail" : "324253@35345"
 }
