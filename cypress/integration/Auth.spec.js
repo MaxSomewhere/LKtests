@@ -9,7 +9,7 @@ let selectAuthContract = '[rel="user"]';
 let selectAuthEmail = '[rel="email"]';
 
 
-    it ("Валидация полей при авторизации с № Договора",() => {
+    it ("Валидация полей при авторизации с № Договора (негативное тестирование)",() => {
         cy.fixture('lktests').then(lk => {
             cy.visit(lk.baseUrl)
 
@@ -28,13 +28,26 @@ let selectAuthEmail = '[rel="email"]';
                 loginForm.userAuthContract(lk.correctAkkNum , lk.incorrectAkkPass)
                 cy.url().should('eq', lk.baseUrl)
 
-                //Авторизация с корректным № Договора и корректным паролем
-                loginForm.userAuthContract(lk.correctAkkNum , lk.correctAkkPass)
-                // cy.url().should('eq', 'https://stat.briz.ua/')
+
         })
     })
 
-    it ("Валидация полей при авторизации с Email",() => {
+
+    it ("Валидация полей при авторизации с № Договора(позитивное тестирование)",() => {
+        cy.fixture('lktests').then(lk => {
+            cy.visit(lk.baseUrl)
+
+            //Выбор метода авторизации "№ Договора + пароль"
+            loginForm.selectAuthInput(selectAuthContract)
+
+                //Авторизация с корректным № Договора и корректным паролем
+                loginForm.userAuthContract(lk.correctAkkNum , lk.correctAkkPass)
+                cy.url().should('eq', 'https://stat.briz.ua/')
+        })
+    })
+
+
+    it ("Валидация полей при авторизации с Email(негативное тестирование)",() => {
         cy.fixture('lktests').then(lk => {
             cy.visit(lk.baseUrl)
 
@@ -53,9 +66,21 @@ let selectAuthEmail = '[rel="email"]';
                 loginForm.userAuthEmail(lk.correctEmail , lk.incorrectAkkPass)
                 cy.url().should('eq' , lk.baseUrl)
 
+
+        })
+    })
+
+
+    it ("Валидация полей при авторизации с Email(позитивное тестирование)",() => {
+        cy.fixture('lktests').then(lk => {
+            cy.visit(lk.baseUrl)
+
+            //Выбор метода авторизации "Email + пароль"
+            loginForm.selectAuthInput(selectAuthEmail)
+
                 //Авторизация с корректным Email и корректным паролем
                 loginForm.userAuthEmail(lk.correctEmail, lk.correctAkkPass)
-                // cy.url().should('eq', 'https://stat.briz.ua/')
+                cy.url().should('eq', 'https://stat.briz.ua/')
         })
     })
 })
